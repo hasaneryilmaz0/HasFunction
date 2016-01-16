@@ -1,5 +1,18 @@
 <?php
+
+/*
+Bu dosya Hasan ERYILMAZ Tarafında Oluşturulmuştur...
+
+*/
+
+
 function metaaciklama($par)
+{
+echo '
+<meta  name="description" content="'.$par.'"/>
+';
+}
+function metadesc($par)
 {
 echo '
 <meta  name="description" content="'.$par.'"/>
@@ -11,7 +24,19 @@ echo '
 <meta name="keywords" content="'.$par.'" />
 ';
 }
+function metakeyword($par)
+{
+echo '
+<meta name="keywords" content="'.$par.'" />
+';
+}
 function googlesitedogrulama($par)
+{
+echo '
+<meta name="google-site-verification" content="'.$par.'" />
+';
+}
+function googleverified($par)
 {
 echo '
 <meta name="google-site-verification" content="'.$par.'" />
@@ -23,7 +48,19 @@ echo '
 <meta name="author" content="'.$par.'" />
 ';
 }
+function metaauthor($par)
+{
+echo '
+<meta name="author" content="'.$par.'" />
+';
+}
 function metasayfaozet($par)
+{
+echo '
+<meta name="abstract" content="'.$par.'" />
+';
+}
+function metapagesummary($par)
 {
 echo '
 <meta name="abstract" content="'.$par.'" />
@@ -35,7 +72,19 @@ echo '
 <meta name="copyright" content="'.$par.'" />
 ';
 }
+function metacopyright($par)
+{
+echo '
+<meta name="copyright" content="'.$par.'" />
+';
+}
 function metayapimci($par)
+{
+echo '
+<meta name="designer" content="'.$par.'" />
+';
+}
+function metadesigner($par)
 {
 echo '
 <meta name="designer" content="'.$par.'" />
@@ -47,13 +96,19 @@ echo '
 <meta name="refresh" content="'.$par.';'.$par2.'" />
 ';
 }
+function metarefresh($par2,$par=0)
+{
+echo '
+<meta name="refresh" content="'.$par.';'.$par2.'" />
+';
+}
 function metaextra($par,$par2)
 {
 echo '
 <meta name="'.$par.'" content="'.$par2.'" />
 ';
 }
-function metaview()
+function metaviewport()
 {
 echo '
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,29 +130,21 @@ function metakarakterset($par="yeni",$par2="utf-8")
 	}
 	
 }
-function metafacebook($title="" , $image="" , $url="" , $tur="" , $description="" , $author="" , $publisher="",$userid="")
+function metacharset($par="yeni",$par2="utf-8")
 {
+	if($par=="eski")
+	{
 	echo '
-		<meta property="og:title" content="'.$title.'"/>
-		<meta property="og:image" content="'.$image.'"/>
-		<meta property="og:site_name" content="'.$title.'"/>
-		<meta property="og:url" content="'.$url.'" />
-		<meta property="og:type" content="'.$tur.'" />
-		<meta property="og:description" content="'.$description.'"/>
-		<meta property="article:author" content="'.$author.'" />
-		<meta property="article:publisher" content="'.$publisher.'" />	
-		<meta property="fb:admins" content="'.$userid.'"/>
+<meta http-equiv="Content-type" content="text/html; charset='.$par2.'" />
 	';
+	}elseif($par=="yeni")
+	{
+		
+	echo '
+<meta charset="'.$par2.'">
+	';
+	}
 	
-}
-function javahata()
-{
-	echo '	  <script type="text/javascript">
-	  window.onerror = function(a,b,c)
-	  {
-		  alert(a + " " + b + " " +c);
-	  }
-	  </script>';
 }
 function favicon($par="favicon.ico")
 {
@@ -106,7 +153,13 @@ echo '
 <link rel="shortcut icon" href="'.$par.'" type="image/x-icon" />
 ';
 }
-function konu_etiketler($etiketler){
+function linkrel($par2,$par="stylesheet",$par3="text/css",$par4="all",$par5=null)
+{
+echo '
+<link rel="'.$par.'" href="'.$par2.'" type="'.$par3.'" media="'.$par4.'" id="'.$par5.'" />
+';	
+}
+function etiketler($etiketler){
 	$bol = explode(",", $etiketler);
 	$etikets = array();
 	foreach ($bol as $etiket){
@@ -115,8 +168,27 @@ function konu_etiketler($etiketler){
 	}
 	echo implode(",", $etikets);
 }
+function tags($etiketler){
+	$bol = explode(",", $etiketler);
+	$etikets = array();
+	foreach ($bol as $etiket){
+		$etiket = '<a href="'.URL.'/tag/'.ss(trim($etiket)).'">'.ss(trim($etiket)).'</a>';
+		array_push($etikets, $etiket);
+	}
+	echo implode(",", $etikets);
+}
 function klasor_listele($dizin){
 	$dizinAc = opendir($dizin) or die ("Dizin Bulunamadı!");
+	while ($dosya = readdir($dizinAc)){
+		if (is_dir($dizin."/".$dosya) && $dosya != '.' && $dosya != '..'){
+			echo "<option ";
+			echo $dosya == TEMA_DIR ? 'selected' : null;
+			echo " value='{$dosya}'>{$dosya}</option>";
+		}
+	}
+}
+function folder_lists($dizin){
+	$dizinAc = opendir($dizin) or die ("Directory does not exist!");
 	while ($dosya = readdir($dizinAc)){
 		if (is_dir($dizin."/".$dosya) && $dosya != '.' && $dosya != '..'){
 			echo "<option ";
@@ -143,8 +215,21 @@ function kisalt($par, $uzunluk = 50){
 	}
 	return $par;
 }
+function shorten($par, $uzunluk = 50){
+	if (strlen($par) > $uzunluk){
+		$par = mb_substr($par, 0, $uzunluk, "UTF-8")."..";
+	}
+	return $par;
+}
 
 function git($par, $time = 0){
+	if ($time == 0){
+		header("Location: {$par}");
+	}else {
+		header("Refresh: {$time}; url={$par}");
+	}
+}
+function go($par, $time = 0){
 	if ($time == 0){
 		header("Location: {$par}");
 	}else {
@@ -177,6 +262,11 @@ function session_olustur($par){
 		$_SESSION[$anahtar] = $deger;
 	}
 }
+function session_create($par){
+	foreach ($par as $anahtar => $deger){
+		$_SESSION[$anahtar] = $deger;
+	}
+}
 
 function sef_link($baslik){
 	$bul = array('Ç', 'Ş', 'Ğ', 'Ü', 'İ', 'Ö', 'ç', 'ş', 'ğ', 'ü', 'ö', 'ı', '-');
@@ -193,8 +283,21 @@ function eposta ($adsoyad, $eposta, $konu, $mesaj){
 	$header .= "From: {$adsoyad} <{$eposta}>\r\n";
 	$header .= "Reply-To: {$adsoyad} <{$eposta}>\r\n";
 	$mesaj = '<div style="padding: 10px; font-size: 17px; font-weight: bold">'.$konu.'</div>
-	<div style="margin: 10px 0; border: 1px solid #ddd; padding: 10px; color: #333">'.nl2br($mesaj).'</div>
-	<div style="border-top: 1px solid #ddd; padding: 10px 0; font-style: oblique; color: #aaa">Tüm Hakları Saklıdır. &copy; 2012 - The HasCoding Team HasFonksiyon E-Posta Modulü</div>';
+	<div style="margin: 10px 0; border: 1px solid #ddd; padding: 10px; color: #333">'.nl2br($mesaj).'</div>';
+	if(mail(EPOSTA, $konu, $mesaj, $header)){
+		return true;
+	}else {
+		return true;
+	}
+}
+
+function email ($adsoyad, $eposta, $konu, $mesaj){
+	$header = "MIME-Version: 1.0\r\n";
+	$header .= "Content-type: text/html; charset=utf-8\r\n";
+	$header .= "From: {$adsoyad} <{$eposta}>\r\n";
+	$header .= "Reply-To: {$adsoyad} <{$eposta}>\r\n";
+	$mesaj = '<div style="padding: 10px; font-size: 17px; font-weight: bold">'.$konu.'</div>
+	<div style="margin: 10px 0; border: 1px solid #ddd; padding: 10px; color: #333">'.nl2br($mesaj).'</div>';
 	if(mail(EPOSTA, $konu, $mesaj, $header)){
 		return true;
 	}else {
