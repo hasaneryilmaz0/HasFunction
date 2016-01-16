@@ -4,6 +4,11 @@
 #HasFonksiyon Bilgi
 Has Fonksiyon dosyasını Php scriptinize ekleyerek dosya içerisindeki tüm fonksiyonlara ulaşabilirsiniz..
 
+
+#Sisteminize Eklemek için 
+<?php
+include "hasfunction.php";
+?>
 # Has Fonksiyon Dosyasındaki Fonksiyonlar
 
 metaaciklama ,
