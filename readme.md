@@ -12,6 +12,7 @@ include "hasfunction.php";
 # Has Fonksiyon Dosyasındaki Fonksiyonlar
 
 metaaciklama ,
+curlbaglanti,
 metaanahtar ,
 googlesitedogrulama ,
 metayazar ,
@@ -40,6 +41,7 @@ eposta ,
 #File Functions
 
 metadesc , 
+curlconnect,
 metakeyword , 
 googleverified ,
 metaauthor ,
