@@ -1,4 +1,4 @@
-## HasFunction
+###HasFunction
 
 
 ##HasFonksiyon Bilgi
