@@ -1,15 +1,15 @@
-# HasFunction
+## HasFunction
 
 
-#HasFonksiyon Bilgi
+##HasFonksiyon Bilgi
 Has Fonksiyon dosyasını Php scriptinize ekleyerek dosya içerisindeki tüm fonksiyonlara ulaşabilirsiniz..
 
 
-#Sisteminize Eklemek için 
+##Sisteminize Eklemek için 
 <?php
 include "hasfunction.php";
 ?>
-# Has Fonksiyon Dosyasındaki Fonksiyonlar
+## Has Fonksiyon Dosyasındaki Fonksiyonlar
 
 metaaciklama ,
 curlbaglanti,
@@ -38,7 +38,7 @@ session_olustur ,
 sef_link ,
 eposta ,
 
-#File Functions
+##File Functions
 
 metadesc , 
 curlconnect,
