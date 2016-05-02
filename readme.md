@@ -1,17 +1,20 @@
-###HasFunction
+#HasFunction
+
+Php Programming Language Function Library
+
+Php Programlama Dili Fonksiyon Kütüphanesi
 
 
-##HasFonksiyon Bilgi
-Has Fonksiyon dosyasını Php scriptinize ekleyerek dosya içerisindeki tüm fonksiyonlara ulaşabilirsiniz..
-
-
-##Sisteminize Eklemek için 
+##To install your system
+##Sisteminize yüklemek için
+##
 <?php
 include "hasfunction.php";
 ?>
-## Has Fonksiyon Dosyasındaki Fonksiyonlar
+##Has Fonksiyon Dosyasındaki Fonksiyonlar
 
-metaaciklama ,
+
+metaaciklama,
 curlbaglanti,
 metaanahtar ,
 googlesitedogrulama ,
@@ -38,7 +41,7 @@ session_olustur ,
 sef_link ,
 eposta ,
 
-##File Functions
+##Functions in HasFunction File
 
 metadesc , 
 curlconnect,
