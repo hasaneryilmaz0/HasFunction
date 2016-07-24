@@ -5,14 +5,23 @@ Bu dosya Hasan ERYILMAZ Tarafında Oluşturulmuştur...
 
 */
 
-
+//meta açıklama ekler
 function metaaciklama($par)
 {
 echo '
 <meta  name="description" content="'.$par.'"/>
 ';
 }
+function metadesc($par)
+{
+echo '
+<meta  name="description" content="'.$par.'"/>
+';
+}
 
+
+
+// curl ile bağlantı sağlar
 function curlconnect($url)
 {
 	$curl = curl_init();
@@ -37,24 +46,24 @@ function curlbaglanti($url)
 	
 }
 
-function metadesc($par)
-{
-echo '
-<meta  name="description" content="'.$par.'"/>
-';
-}
+
+// meta anahtar kelimeleri ekler
 function metaanahtar($par)
 {
 echo '
 <meta name="keywords" content="'.$par.'" />
 ';
 }
+
 function metakeyword($par)
 {
 echo '
 <meta name="keywords" content="'.$par.'" />
 ';
 }
+
+
+//googlenin verdiğini doğrumala kodunu eklemnizi sağlar
 function googlesitedogrulama($par)
 {
 echo '
@@ -67,6 +76,8 @@ echo '
 <meta name="google-site-verification" content="'.$par.'" />
 ';
 }
+
+//meta da sitedeki yazar yönetici adını girmesizi sağlar
 function metayazar($par)
 {
 echo '
@@ -79,6 +90,10 @@ echo '
 <meta name="author" content="'.$par.'" />
 ';
 }
+
+
+//meta da sayfa özetini girmenizi sağlar
+
 function metasayfaozet($par)
 {
 echo '
@@ -91,6 +106,8 @@ echo '
 <meta name="abstract" content="'.$par.'" />
 ';
 }
+
+//site telif hakkının kime ait olduğunu yazmanısı sağlar
 function metatelif($par)
 {
 echo '
@@ -103,6 +120,8 @@ echo '
 <meta name="copyright" content="'.$par.'" />
 ';
 }
+
+//meta da sitenin tasarımcısını eklemenizi sağlar
 function metayapimci($par)
 {
 echo '
@@ -115,6 +134,9 @@ echo '
 <meta name="designer" content="'.$par.'" />
 ';
 }
+
+
+//meta yönlendirme kodu
 function metayonlerdir($par2,$par=0)
 {
 echo '
@@ -127,18 +149,26 @@ echo '
 <meta name="refresh" content="'.$par.';'.$par2.'" />
 ';
 }
+
+
+//extra olarak meta ya değer girmenizi sağlar
 function metaextra($par,$par2)
 {
 echo '
 <meta name="'.$par.'" content="'.$par2.'" />
 ';
 }
+
+
+//responsive meta değeri girer
 function metaviewport()
 {
 echo '
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ';
 }
+
+//meta karakter setini tanımlar
 function metakarakterset($par="yeni",$par2="utf-8")
 {
 	if($par=="eski")
@@ -171,6 +201,9 @@ function metacharset($par="yeni",$par2="utf-8")
 	}
 	
 }
+
+
+//site faviconunu belirler
 function favicon($par="favicon.ico")
 {
 echo '
@@ -178,12 +211,20 @@ echo '
 <link rel="shortcut icon" href="'.$par.'" type="image/x-icon" />
 ';
 }
+
+
+//link rel yapısını ekler
+
 function linkrel($par2,$par="stylesheet",$par3="text/css",$par4="all",$par5=null)
 {
 echo '
 <link rel="'.$par.'" href="'.$par2.'" type="'.$par3.'" media="'.$par4.'" id="'.$par5.'" />
 ';	
 }
+
+
+// etiketleri parçalar
+
 function etiketler($etiketler){
 	$bol = explode(",", $etiketler);
 	$etikets = array();
@@ -202,6 +243,9 @@ function tags($etiketler){
 	}
 	echo implode(",", $etikets);
 }
+
+
+// gönderdiğiniz dizindeki klasörleri listeler
 function klasor_listele($dizin){
 	$dizinAc = opendir($dizin) or die ("Dizin Bulunamadı!");
 	while ($dosya = readdir($dizinAc)){
@@ -222,6 +266,8 @@ function folder_lists($dizin){
 		}
 	}
 }
+
+//$_POST metodu
 function post($par, $st = false){
 		if ($st){
 			return htmlspecialchars(addslashes(trim($_POST[$par])));
@@ -230,10 +276,14 @@ function post($par, $st = false){
 		}
 }
 
+
+//$_GET metodu
 function get($par){
 	return strip_tags(trim(addslashes($_GET[$par])));
 }
 
+
+//içerik kısaltma işine yarar
 function kisalt($par, $uzunluk = 50){
 	if (strlen($par) > $uzunluk){
 		$par = mb_substr($par, 0, $uzunluk, "UTF-8")."..";
@@ -247,6 +297,8 @@ function shorten($par, $uzunluk = 50){
 	return $par;
 }
 
+
+//header yönlendirme
 function git($par, $time = 0){
 	if ($time == 0){
 		header("Location: {$par}");
@@ -262,6 +314,8 @@ function go($par, $time = 0){
 	}
 }
 
+
+//$_SESSION metodu
 function session($par){
 	if ($_SESSION[$par]){
 		return $_SESSION[$par];
@@ -270,6 +324,7 @@ function session($par){
 	}
 }
 
+//$_COOKIE metodu
 function cookie($par){
 	if ($_COOKIE[$par]){
 		return $_COOKIE[$par];
@@ -278,9 +333,13 @@ function cookie($par){
 	}
 }
 
+// stripslashes metodu
 function ss($par){
 	return stripslashes($par);
 }
+
+
+// session oluştumanızı sağlar
 
 function session_olustur($par){
 	foreach ($par as $anahtar => $deger){
@@ -293,6 +352,9 @@ function session_create($par){
 	}
 }
 
+
+
+//gönderdiğiniz değeri sef link yapısına çevirir
 function sef_link($baslik){
 	$bul = array('Ç', 'Ş', 'Ğ', 'Ü', 'İ', 'Ö', 'ç', 'ş', 'ğ', 'ü', 'ö', 'ı', '-');
 	$yap = array('c', 's', 'g', 'u', 'i', 'o', 'c', 's', 'g', 'u', 'o', 'i', ' ');
@@ -302,6 +364,8 @@ function sef_link($baslik){
 	$perma = str_replace(' ', '-', $perma);
 	return $perma;
 }
+
+// eposta gönderme fonksiyonu
 function eposta ($adsoyad, $eposta, $konu, $mesaj){
 	$header = "MIME-Version: 1.0\r\n";
 	$header .= "Content-type: text/html; charset=utf-8\r\n";
