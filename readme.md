@@ -7,6 +7,8 @@ Php Programlama Dili Fonksiyon Kütüphanesi
 
 ##To install your system -- Sisteminize yüklemek için
 
+include "hasfunction.php";
+
 ##
 <?php
 include "hasfunction.php";
